@@ -1,0 +1,22 @@
+.main-container {
+  width: calc(100% - 15rem);
+}
+
+.tracks-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.tracks-container::-webkit-scrollbar-track {
+  background-color: transparent !important;
+  height: 2rem !important;
+}
+
+.tracks-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.089);
+}
+
+.tracks-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.208);
+
+  cursor: pointer;
+}
