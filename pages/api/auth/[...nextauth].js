@@ -1,6 +1,6 @@
-import NextAuth from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import SpotifyAPI, { LOGIN_URL } from "../../../lib/spotify";
+import NextAuth from "next-auth/next";
 
 async function refreshAccessToken(token) {
   try {
@@ -8,7 +8,7 @@ async function refreshAccessToken(token) {
     SpotifyAPI.setRefeshToken(token.refreshToken);
 
     const { body: refreshedToken } = await SpotifyAPI.refreshAccessToken();
-    console.log("refresh access token id", refreshedToken);
+    "refresh access token id", refreshedToken;
 
     return {
       ...token,
@@ -17,7 +17,7 @@ async function refreshAccessToken(token) {
       refreshToken: refreshedToken.refresh_token ?? token.refeshToken,
     };
   } catch (error) {
-    console.log(error);
+    error;
 
     return {
       ...token,
@@ -26,7 +26,7 @@ async function refreshAccessToken(token) {
   }
 }
 
-export const authOptions = {
+export default NextAuth({
   // Configure one or more authentication providers
   providers: [
     SpotifyProvider({
@@ -40,12 +40,13 @@ export const authOptions = {
     signIn: "/login",
   },
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, account, user }) {
       // Initial sign in
       if (account && user) {
         return {
+          ...token,
           accessToken: account.access_token,
-          username: account.providerAccount,
+          username: account.providerAccountId,
           accessTokenExpires: account.expires_at * 1000,
           refreshToken: account.refresh_token,
           // user,
@@ -54,23 +55,21 @@ export const authOptions = {
 
       // Return previous token if the access token has not expired yet
       if (Date.now() < token.accessTokenExpires) {
-        console.log("ACCESS TOKEN IS VALID");
+        ("Existing TOKEN IS VALID");
         return token;
       }
 
       // Access token has expired, try to update it
-      console.log("ACCESS TOKEN IS EXPIRED");
+      ("ACCESS TOKEN IS EXPIRED, refresing...");
       return refreshAccessToken(token);
     },
+
     async session({ session, token }) {
-      session.user = token.user;
-      session.accessToken = token.accessToken;
-      session.refreshToken = token.refreshToken;
-      session.error = token.error;
+      session.user.accessToken = token.accessToken;
+      session.user.refreshToken = token.refreshToken;
+      session.user.username = token.username;
 
       return session;
     },
   },
-};
-
-export default NextAuth(authOptions);
+});

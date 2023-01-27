@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
@@ -7,12 +7,39 @@ import { VscLibrary } from "react-icons/vsc";
 import { MdAddBox } from "react-icons/md";
 import { RiChatHeartLine } from "react-icons/ri";
 import { BiLogOut } from "react-icons/bi";
-import { signOut, useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+import useSpotify from "../customHooks/useSpotify";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../redux/store";
+import { change } from "../redux/slices/color";
+import { select } from "../redux/slices/playlist";
 
 const SideBar: FunctionComponent = () => {
   const { data: session, status } = useSession();
+  const [playlist, setPlayList] = useState<any[]>([]);
+  const playlistId = useSelector((state: RootState) => state.playlist.value);
+  const dispatch = useDispatch();
 
-  console.log(session);
+  useEffect(() => {
+    dispatch(change());
+  }, [playlistId]);
+
+  const spotifyApi = useSpotify();
+
+  useEffect(() => {
+    if (spotifyApi.getAccessToken()) {
+      spotifyApi.getUserPlaylists().then(
+        (playlist: any) => {
+          setPlayList(playlist.body.items);
+        },
+        (err: any) => {
+          "Something went wrong!", err;
+        }
+      );
+    }
+  }, [session, spotifyApi]);
+
   return (
     <div className="bg-black text-gray-400 fixed left-0 top-0 h-full w-60 lg:p-6">
       <Link href="/">
@@ -91,8 +118,21 @@ const SideBar: FunctionComponent = () => {
           </Link>
         </div>
         <div className="h-[0.07px] bg-gray-400"></div>
-        <div className="text-sm font-semibold text-gray-400 hover:text-white hover:cursor-pointer transition-colors ease-linear duration-150">
-          Mi playlist n.1
+        <div>
+          {playlist.map((playlist: any) => {
+            return (
+              <div
+                key={playlist.id}
+                className="text-sm my-1.5 font-semibold text-gray-400 hover:text-white hover:cursor-pointer transition-colors ease-linear duration-150">
+                <button
+                  onClick={() => {
+                    dispatch(select(playlist.id));
+                  }}>
+                  {playlist.name}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
