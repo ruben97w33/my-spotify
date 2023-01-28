@@ -34,14 +34,14 @@ const SideBar: FunctionComponent = () => {
           setPlayList(playlist.body.items);
         },
         (err: any) => {
-          "Something went wrong!", err;
+          console.log("Something went wrong!", err);
         }
       );
     }
   }, [session, spotifyApi]);
 
   return (
-    <div className="bg-black text-gray-400 fixed left-0 top-0 h-full w-60 lg:p-6">
+    <div className="bg-black text-gray-400 fixed left-0 top-0 h-[calc(100%-5rem)] w-60 lg:p-6">
       <Link href="/">
         <div className="w-[129px] relative h-[2.4rem]">
           <Image

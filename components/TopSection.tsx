@@ -10,8 +10,6 @@ import { change } from "../redux/slices/color";
 import type { RootState } from "../redux/store";
 
 const TopSection: FunctionComponent = () => {
-  const { data: session, status } = useSession();
-
   const playlistId = useSelector((state: RootState) => state.playlist.value);
   const dispatch = useDispatch();
 

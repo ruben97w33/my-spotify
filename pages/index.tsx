@@ -4,20 +4,20 @@ import Header from "../components/Header";
 import SideBar from "../components/SideBar";
 import TopSection from "../components/TopSection";
 import TopTracks from "../components/TopTracks";
-import { useSession, signOut } from "next-auth/react";
 import React, { useEffect } from "react";
+import PlaySong from "../components/PlaySong";
 
 const Home: NextPage = () => {
   return (
     <div>
       <Header />
-      <div className="lg:h-screen bg-[#121212]  flex tracks-container overflow-y-auto">
+      <div className="lg:h-[calc(100vh-5.6rem)] bg-[#121212]  flex tracks-container overflow-y-auto">
         <div className="w-60">
           <SideBar />
         </div>
 
         <TopSection />
-        <div className="relative mt-[64px]  main-container ">
+        <div className="relative mt-[64px] main-container ">
           <TopTracks />
           <div className="px-8 py-10">
             <h1 className="text-white text-2xl font-bold">
@@ -43,6 +43,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+      <PlaySong />
     </div>
   );
 };
