@@ -1,5 +1,13 @@
-.main-container {
-  width: calc(100% - 15rem);
+@media (min-width: 1024px) {
+  .main-container {
+    width: calc(100% - 15rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .main-container {
+    width: 100%;
+  }
 }
 
 .tracks-container::-webkit-scrollbar {
@@ -47,4 +55,8 @@
 
 .skeleton-footer {
   width: 30%;
+}
+
+button {
+  outline: none;
 }

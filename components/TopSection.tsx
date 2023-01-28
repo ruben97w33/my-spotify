@@ -32,9 +32,9 @@ const TopSection: FunctionComponent = () => {
     <div
       className={`h-[64px] top-0 right-0 z-30 main-container flex items-center px-8 ${
         colors[color ? color : 0]
-      }  fixed`}>
+      }  lg:fixed`}>
       <div className="flex justify-between items-center w-full">
-        <div className="flex space-x-4">
+        <div className="flex lg:space-x-4">
           <div className="bg-black h-8 w-8 flex items-center justify-center rounded-full hover:cursor-pointer">
             <RiArrowLeftSLine className="text-white " size="1.8rem" />
           </div>

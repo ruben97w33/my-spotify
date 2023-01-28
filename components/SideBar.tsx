@@ -41,7 +41,7 @@ const SideBar: FunctionComponent = () => {
   }, [session, spotifyApi]);
 
   return (
-    <div className="bg-black text-gray-400 fixed left-0 top-0 h-[calc(100%-5rem)] w-60 lg:p-6">
+    <div className="bg-black text-gray-400 fixed left-0 top-0 h-[calc(100%-5rem)] lg:w-60 w-0 overflow-hidden lg:p-6">
       <Link href="/">
         <div className="w-[129px] relative h-[2.4rem]">
           <Image

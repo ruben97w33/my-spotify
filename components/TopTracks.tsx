@@ -16,7 +16,6 @@ const TopTracks: FunctionComponent = () => {
   const [recomend, setRecomend] = useState<any>([]);
   const spotifyApi = useSpotify();
   const date: Date = new Date();
-  date;
 
   const colors = [
     "from-indigo-500",
@@ -27,6 +26,20 @@ const TopTracks: FunctionComponent = () => {
     "from-teal-500",
     "from-violet-500",
   ];
+
+  const grettins = (date: Date) => {
+    const hours = date.getHours();
+
+    if (hours >= 0 && hours < 12) {
+      return "Buenos días";
+    }
+    if (hours >= 12 && hours < 17) {
+      return "Buenas tardes";
+    }
+    if (hours >= 17 && hours < 12) {
+      return "Buenas noches";
+    }
+  };
 
   useEffect(() => {
     dispatch(change);
@@ -49,7 +62,7 @@ const TopTracks: FunctionComponent = () => {
             setRecomend(recommendations.tracks);
           },
           function (err) {
-            "Something went wrong!", err;
+            console.log("Something went wrong!", err);
           }
         );
     }
@@ -60,7 +73,7 @@ const TopTracks: FunctionComponent = () => {
       className={`w-full h-64 bg-gradient-to-b px-8 text-white ${
         colors[color ? color : 0]
       } to-[#121212]`}>
-      <h1 className="text-3xl font-bold pt-4">Buenas noches</h1>
+      <h1 className="text-3xl font-bold pt-4">{grettins(date)}</h1>
 
       <div className="grid grid-cols-3 gap-x-8 gap-y-6 pt-6">
         {recomend &&

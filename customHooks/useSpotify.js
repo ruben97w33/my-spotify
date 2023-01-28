@@ -6,6 +6,7 @@ const spotifyAPI = new SpotifyWebApi({
   clientId: process.env.NEX_PUBLIC_CLIENT_ID,
   clientSecret: process.env.NEXT_PUBLIC_SPOTIFY_SECRET_ID,
 });
+
 export default function useSpotify() {
   const { data: session, status } = useSession();
 

@@ -12,8 +12,8 @@ const CardRecomend: FunctionComponent<TracksProps> = (props) => {
   const { imgsrc, title } = props;
   imgsrc;
   return (
-    <div className="w-full h-[5.3rem] items-center relative bg-gray-500 pr-8 space-x-6 bg-opacity-50 flex rounded-md hover:cursor-pointer transition-all ease-linear duration-150 hover:bg-[#3f4346] hover:bg-opacity-30">
-      <div className="overflow-hidden relative rounded-l-md w-[6.5rem] h-[5.3rem]">
+    <div className="w-full h-[5rem] items-center relative bg-gray-500 pr-8 space-x-6 bg-opacity-50 flex rounded-sm hover:cursor-pointer transition-all ease-linear duration-150 hover:bg-[#3f4346] hover:bg-opacity-30">
+      <div className="overflow-hidden relative rounded-l-sm w-[6.5rem] h-[5rem]">
         <Image src={imgsrc} fill alt="image" className="object-cover" />
       </div>
       <div className="w-full space-y-3">
