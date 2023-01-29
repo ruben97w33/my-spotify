@@ -55,3 +55,9 @@
 html {
   font-family: "DM Sans", sans-serif;
 }
+
+@layer components {
+  .btn-song {
+    @apply hover:scale-[1.1] transition-transform ease-linear duration-150;
+  }
+}

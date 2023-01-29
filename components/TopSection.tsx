@@ -12,7 +12,8 @@ import type { RootState } from "../redux/store";
 const TopSection: FunctionComponent = () => {
   const playlistId = useSelector((state: RootState) => state.playlist.value);
   const dispatch = useDispatch();
-
+  const { data: session, status } = useSession();
+  console.log(session);
   const color = useSelector((state: RootState) => state.color.value);
 
   const colors = [
@@ -47,7 +48,7 @@ const TopSection: FunctionComponent = () => {
             <div className="rounded-full px-3.5 py-1 border">Premium</div>
             <div className="flex rounded-full items-center space-x-2 px-3 py-1 bg-black text-white hover:cursor-pointer">
               <RiAccountCircleFill size="1.5rem" />
-              <div>Iniciar sesión</div>
+              <div>{session?.user ? session?.user.name : "Iniciar sesión"}</div>
             </div>
           </div>
         </div>
