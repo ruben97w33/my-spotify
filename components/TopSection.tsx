@@ -8,12 +8,13 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { change } from "../redux/slices/color";
 import type { RootState } from "../redux/store";
+import { useRouter } from "next/router";
 
-const TopSection: FunctionComponent = () => {
+const TopSection: FunctionComponent<any> = ({ children }) => {
   const playlistId = useSelector((state: RootState) => state.playlist.value);
   const dispatch = useDispatch();
   const { data: session, status } = useSession();
-  console.log(session);
+  const router = useRouter();
   const color = useSelector((state: RootState) => state.color.value);
 
   const colors = [
@@ -32,16 +33,18 @@ const TopSection: FunctionComponent = () => {
   return (
     <div
       className={`h-[64px] top-0 right-0 z-30 main-container flex items-center px-8 ${
-        colors[color ? color : 0]
+        router.asPath === "/" && colors[color ? color : 0]
       }  lg:fixed`}>
       <div className="flex justify-between items-center w-full">
-        <div className="flex lg:space-x-4">
+        <div className="flex lg:space-x-5 items-center">
           <div className="bg-black h-8 w-8 flex items-center justify-center rounded-full hover:cursor-pointer">
             <RiArrowLeftSLine className="text-white " size="1.8rem" />
           </div>
           <div className="bg-black h-8 w-8 flex items-center justify-center rounded-full hover:cursor-pointer">
             <RiArrowRightSLine className="text-white " size="1.8rem" />
           </div>
+
+          {children && children}
         </div>
         <div>
           <div className="flex space-x-4 text-white text-sm font-bold">

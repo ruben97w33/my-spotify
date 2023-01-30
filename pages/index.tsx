@@ -11,7 +11,7 @@ import { useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
-  const [topSongs, setTopSongs] = useState<any[]>([]);
+  const [topSongs, setTopSongs] = useState<any>([]);
   const spotifyApi = useSpotify();
 
   const popularity = (a: any, b: any): number => {
@@ -20,13 +20,15 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
-      spotifyApi.getMyTopTracks().then(
-        function (data) {
+      spotifyApi.getMyTopArtists().then(
+        (data) => {
           let topTracks = data.body.items;
           topTracks.sort(popularity);
+
+          console.log(topTracks);
           setTopSongs(topTracks);
         },
-        function (err) {
+        (err) => {
           console.log("Something went wrong!", err);
         }
       );
@@ -51,11 +53,12 @@ const Home: NextPage = () => {
 
             <div className="grid lg:grid-cols-6 md:grid-col-3 grid-cols-1 lg:px-0 px-10 lg:gap-x-7 mt-7 gap-y-6 justify-between w-full">
               {topSongs.map((el: any) => {
+                console.log(el);
                 return (
                   <div key={el.id}>
                     <CardTrack
-                      imgsrc={el.album.images[0]?.url}
-                      title={el.artists[0].name}
+                      imgsrc={el?.images[0]?.url}
+                      title={el?.name}
                       description="Exitos de Charlie en el 2020"
                     />
                   </div>

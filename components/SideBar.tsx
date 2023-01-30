@@ -75,7 +75,7 @@ const SideBar: FunctionComponent = () => {
         </div>
         <div>
           <Link
-            href="/"
+            href="/search"
             className="text-gray-400 hover:text-white transition-colors ease-linear duration-150">
             <div className="flex items-center space-x-[17px]">
               <FiSearch size="1.6rem" />

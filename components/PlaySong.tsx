@@ -61,8 +61,6 @@ const PlaySong: FunctionComponent = () => {
       if (SpotifiApi.getAccessToken()) {
         SpotifiApi.getMyCurrentPlayingTrack().then((data) => {
           dispatch(setCurrentSong(data.body));
-
-          console.log(data.body);
         });
       }
     }
@@ -90,14 +88,14 @@ const PlaySong: FunctionComponent = () => {
           <button>
             <AiOutlineHeart
               size="1.1rem"
-              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
             />
           </button>
 
           <button>
             <MdPictureInPictureAlt
               size="1.1rem"
-              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
             />
           </button>
         </div>
@@ -107,27 +105,27 @@ const PlaySong: FunctionComponent = () => {
           <button>
             <FaRandom
               size="1rem"
-              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
             />
           </button>
           <button>
             <BiSkipPrevious
               size="2.2rem"
-              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
             />
           </button>
           {isPlaying ? (
             <button onClick={handlePlayPause}>
               <AiFillPauseCircle
                 size="2.2rem"
-                className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+                className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
               />
             </button>
           ) : (
             <button onClick={handlePlayPause}>
               <AiFillPlayCircle
                 size="2.2rem"
-                className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+                className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
               />
             </button>
           )}
@@ -135,13 +133,13 @@ const PlaySong: FunctionComponent = () => {
           <button>
             <BiSkipNext
               size="2.2rem"
-              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
             />
           </button>
           <button>
             <BiRepeat
               size="1.3rem"
-              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+              className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
             />
           </button>
         </div>
@@ -155,25 +153,25 @@ const PlaySong: FunctionComponent = () => {
         <button>
           <TbMicrophone2
             size="1.3rem"
-            className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+            className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
           />
         </button>
         <button>
           <HiOutlineQueueList
             size="1.3rem"
-            className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+            className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
           />
         </button>
         <button>
           <TbDevices2
             size="1.3rem"
-            className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+            className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
           />
         </button>
         <button>
           <RiVolumeUpFill
             size="1.3rem"
-            className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-500"
+            className="text-[#BABABA] btn-song hover:cursor-pointer hover:text-white transition-colors ease-linear duration-150"
           />
         </button>
       </div>
